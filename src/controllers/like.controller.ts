@@ -7,7 +7,7 @@ const likePost = catchAsync(async (req, res) => {
   const user = req.user as User;
   const { postId } = req.body;
   const like = await likeService.likePost(postId, user.id);
-  res.status(httpStatus.CREATED).send(like);
+  res.status(httpStatus.OK).send(like);
 });
 
 export default {
