@@ -1,0 +1,10 @@
+
+# environment variables
+.env
+.env.local
+
+# dependencies
+node_modules/
+
+# dist folder
+dist
