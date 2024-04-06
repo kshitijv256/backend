@@ -42,7 +42,7 @@ const likePost = async (postId: string, userId: string) => {
   });
 
   return {
-    ...like,
+    like,
     message: "Post Liked",
     Post: await postService.getPostById(postId),
   };
