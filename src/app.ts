@@ -6,6 +6,9 @@ import { errorConverter, errorHandler } from "./middlewares/error";
 import ApiError from "./utils/ApiError";
 import httpStatus from "http-status";
 import { jwtStrategy } from "./config/passport";
+import mongoose from "mongoose";
+import { Message } from "./models/message";
+import "dotenv/config";
 
 const app: Express = express();
 
@@ -23,6 +26,32 @@ app.options("*", cors());
 // jwt authentication
 app.use(passport.initialize());
 passport.use("jwt", jwtStrategy);
+
+// mongo messages routes
+const connect = async () => {
+  await mongoose.connect(`${process.env.MONGO_DB_URL}`);
+  console.log("mongo connected");
+};
+
+connect();
+app.get(
+  "/messages",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const messages = await Message.find();
+      res.send(messages);
+    } catch {
+      res.sendStatus(404);
+    }
+  }
+);
+
+app.post("/sendMessage", async (req, res) => {
+  const msg = req.body;
+  const message = new Message(msg);
+  message.save();
+  res.send(msg);
+});
 
 // v1 api routes
 app.use("/api/v1", v1);
