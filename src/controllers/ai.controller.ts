@@ -17,6 +17,14 @@ const getExplanationStream = catchAsync(async (req, res) => {
     explanation: explanation,
   });
 });
+const getSuggestionStream = catchAsync(async (req, res) => {
+  const { keywords } = req.body;
+
+  const suggestion = await aiService.getSuggestionStream(keywords);
+  res.status(httpStatus.OK).send({
+    suggestion: suggestion,
+  });
+});
 
 const getHindiTranslation = catchAsync(async (req, res) => {
   const { postId } = req.body;
@@ -37,4 +45,5 @@ const getHindiTranslation = catchAsync(async (req, res) => {
 export default {
   getExplanationStream,
   getHindiTranslation,
+  getSuggestionStream,
 };

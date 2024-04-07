@@ -47,6 +47,13 @@ router
     checkActionAccess,
     aiController.getExplanationStream
   );
+router
+  .route("/suggestion")
+  .post(
+    auth("getExplanation"),
+    checkActionAccess,
+    aiController.getSuggestionStream
+  );
 
 router
   .route("/hindi-translation")
