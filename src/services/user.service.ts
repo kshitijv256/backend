@@ -109,6 +109,11 @@ const getUserByUsername = async <Key extends keyof User>(
   }) as Promise<Pick<User, Key> | null>;
 };
 
+// get all users
+
+const getAllUsers = async () => {
+  return prisma.user.findMany({});
+};
 /**
  * Update user by id
  * @param {string} userId
@@ -137,6 +142,7 @@ const updateUserById = async <Key extends keyof User>(
 
 export default {
   createUser,
+  getAllUsers,
   getUserByEmail,
   getUserByUsername,
   getUserById,

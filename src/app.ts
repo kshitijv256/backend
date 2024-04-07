@@ -9,6 +9,7 @@ import { jwtStrategy } from "./config/passport";
 import mongoose from "mongoose";
 import { Message } from "./models/message";
 import "dotenv/config";
+import { userController } from "./controllers";
 
 const app: Express = express();
 
@@ -52,6 +53,8 @@ app.post("/sendMessage", async (req, res) => {
   message.save();
   res.send(msg);
 });
+
+app.get("/allusers", userController.getAllUsers);
 
 // v1 api routes
 app.use("/api/v1", v1);

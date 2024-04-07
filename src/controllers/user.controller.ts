@@ -14,6 +14,12 @@ const getCurrentUser = catchAsync(async (req, res) => {
   res.send(user);
 });
 
+const getAllUsers = catchAsync(async (req, res) => {
+  const users = await userService.getAllUsers();
+  res.send(users);
+});
+
 export default {
   getCurrentUser,
+  getAllUsers,
 };
