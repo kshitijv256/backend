@@ -23,6 +23,7 @@ model User {
   Token           Token[]
   college         College?  @relation(fields: [collegeId], references: [id])
   collegeId       String?
+  profilePicture  String?
   Post            Post[]
   Like            Like[]
   Comment         Comment[]
@@ -132,4 +133,14 @@ model Vote {
   updatedAt DateTime @updatedAt
 
   @@unique([userId, optionId])
+}
+
+model Chat{
+  id        String   @id @default(uuid())
+  to        String
+  from      String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@unique([id])
 }
