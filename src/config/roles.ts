@@ -14,6 +14,7 @@ const allRoles = {
     "getPostById",
     "likePost",
     "getExplanation",
+    "getHindiTranslation",
   ],
   [Role.ADMIN]: ["getUsers", "manageUsers"],
 };

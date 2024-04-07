@@ -48,4 +48,12 @@ router
     aiController.getExplanationStream
   );
 
+router
+  .route("/hindi-translation")
+  .post(
+    auth("getHindiTranslation"),
+    checkActionAccess,
+    aiController.getHindiTranslation
+  );
+
 export default router;
